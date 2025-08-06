@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+  <link rel="stylesheet" href="{{ secure_asset('css/styles.css') }}" />
 </head>
 <body>
 
@@ -25,7 +25,7 @@
   </script>
   <script src="https://unpkg.com/feather-icons"></script>
   <script> feather.replace(); </script>
-  <script src="{{ asset('js/script.js') }}"></script>
+  <script src="{{ secure_asset('js/script.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>

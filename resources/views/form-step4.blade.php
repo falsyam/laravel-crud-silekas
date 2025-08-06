@@ -12,7 +12,7 @@
             rel="stylesheet"
             />
         <!-- CSS -->
-        <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+        <link rel="stylesheet" href="{{ secure_asset('css/styles.css') }}" />
         <title>Pendaftaran Lembaga Kesejahteraan Sosial</title>
     </head>
     <body>
@@ -432,7 +432,7 @@
         <script>
             feather.replace(); // initialize icons
         </script>
-        <script type="text/javascript" src={{ asset('js/script.js') }}></script>
+        <script type="text/javascript" src={{ secure_asset('js/script.js') }}></script>
         <script>
     let formChanged = false;
 

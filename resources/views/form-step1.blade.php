@@ -10,11 +10,7 @@
             href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
             rel="stylesheet"
             />
-<<<<<<< HEAD
         <link rel="stylesheet" href="{{ secure_asset('css/styles.css') }}" />
-=======
-        <link rel="stylesheet" href="css/styles.css" />
->>>>>>> 73d8058 (update commit)
         <title>Pendaftaran Lembaga Kesejahteraan Sosial</title>
     </head>
     <body>
@@ -372,7 +368,7 @@
 
             </script>
         </script>
-        <script type="text/javascript" src={{ asset('js/script.js') }}></script>
+        <script type="text/javascript" src={{ secure_asset('js/script.js') }}></script>
 
         <script>
     let formChanged = false;
