@@ -1,5 +1,3 @@
-<!-- resources/views/form-pendaftaran.blade.php -->
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,7 +10,11 @@
             href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
             rel="stylesheet"
             />
+<<<<<<< HEAD
         <link rel="stylesheet" href="{{ secure_asset('css/styles.css') }}" />
+=======
+        <link rel="stylesheet" href="css/styles.css" />
+>>>>>>> 73d8058 (update commit)
         <title>Pendaftaran Lembaga Kesejahteraan Sosial</title>
     </head>
     <body>
