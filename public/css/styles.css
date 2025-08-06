@@ -1,0 +1,995 @@
+body {
+    font-family: "Inter", sans-serif;
+}
+
+.header {
+    width: 1300px;
+    padding: 10px 5px; 
+    background: white;
+    font-size: 30px;
+    margin: auto;
+    margin-bottom: 10px;
+    color: #26428b;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+}
+
+.header a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.header i {
+    color: #26428b;
+    margin-left: 15px;
+    padding-right: 5px;
+    font-size: 30px; 
+}
+.header img {
+    width: 150px;
+}
+
+.header .icon-link {
+    margin-right: 15px;
+}
+
+.banner {
+    position: relative;
+    margin: auto;
+    width: 1296px;
+    height: 280px;
+    font-family: "Alexandria", sans-serif;
+}
+
+.banner .inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        53deg,
+        rgba(16, 27, 59, 1) 30%,
+        rgba(227, 175, 100, 1) 86%
+    );
+    border-radius: 20px;
+    padding-left: 38px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.banner .inner .left {
+    padding-top: 30px;
+}
+.banner .inner .left img {
+    width: 120px;
+}
+
+.banner .right {
+    position: absolute;
+    bottom: 0; /* ✅ align bottom of image to bottom of banner */
+    right: 0;
+    z-index: 2;
+}
+
+.banner .right img {
+    height: 330px; /* ✅ taller than banner (280px) so top part sticks out */
+    border-bottom-right-radius: 20px;
+    display: block;
+    /* Fading from center to bottom-left */
+    /* Gradient fade only to the bottom-left starting from center */
+    -webkit-mask-image: linear-gradient(
+        200deg,
+        /* ↙︎ from top-right to bottom-left */ rgba(0, 0, 0, 1) 0%,
+        /* Right/top-right stays visible */ rgba(0, 0, 0, 1) 50%,
+        /* Midpoint still visible */ rgba(0, 0, 0, 0) 100%
+            /* Bottom-left fades out */
+    );
+    -webkit-mask-position: center;
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+
+    mask-image: linear-gradient(
+        200deg,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 1) 50%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    mask-position: center;
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+}
+
+.banner h1 {
+    font-size: 36px;
+    color: white;
+    line-height: 15px;
+}
+
+.banner p {
+    margin-top: 30px;
+    color: white;
+    width: 466px;
+    font-weight: 50;
+}
+.menu {
+    color: #101b3b;
+    width: 1296px;
+    height: 350px;
+    margin: auto;
+    margin-bottom: 100px;
+}
+
+.menu-card h2 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.menu-card h3 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.box1 {
+    background-image: linear-gradient(
+            0deg,
+            rgba(38, 66, 139, 0.8) 30%,
+            rgba(255, 255, 255, 0.1) 86%
+        ),
+        url("img/box-1.jpg");
+}
+
+.box2 {
+    background-image: linear-gradient(
+            0deg,
+            rgba(38, 66, 139, 0.8) 30%,
+            rgba(255, 255, 255, 0.1) 86%
+        ),
+        url("img/box-2.jpg");
+}
+.box3 {
+    background-image: linear-gradient(
+            0deg,
+            rgba(38, 66, 139, 0.8) 30%,
+            rgba(255, 255, 255, 0.1) 86%
+        ),
+        url("img/box-3.jpg");
+}
+
+.menu-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0px;
+    justify-content: space-between;
+}
+
+.card-wrapper {
+    width: 365px;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.box {
+    width: 100%;
+    height: 230px;
+    padding: 20px;
+    color: white;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 2;
+    position: relative;
+}
+
+.box-footer {
+    margin-top: -15px;
+    width: 100%;
+    padding: 35px 35px 25px 30px;
+    background-color: #f6f4f0;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    color: #26428b;
+    font-weight: 525;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-wrapper {
+    width: 400px;
+}
+.box,
+.box-footer {
+    width: 100%;
+}
+
+.box-footer a {
+    color: #101b3b;
+    text-decoration: none;
+}
+
+footer {
+    border-top: 1px solid rgb(215, 215, 215);
+    margin: auto;
+    width: 1296px;
+}
+
+.dinas {
+    margin: 10px 0;
+    width: 1296px;
+    display: flex; /* ✅ Use flex instead of inline-block */
+    justify-content: space-between; /* ✅ Distribute company and desc */
+    align-items: flex-start; /* ✅ Align both sections to top */
+}
+
+.company {
+    display: flex; /* inline-flex not needed */
+    align-items: flex-start; /* align content at the top */
+
+    width: 450px;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.company img {
+    width: 60px;
+    height: auto; /* ✅ Prevent stretching */
+}
+
+.company p {
+    font-size: 13px;
+    margin-left: 20px;
+    margin-top: 0;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.company span {
+    font-weight: 400;
+    display: block;
+    margin-top: 0;
+}
+
+.desc {
+    width: 350px;
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.desc div {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.desc i,
+.desc svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+    margin-top: 2px; /* Slight vertical adjust for better alignment */
+}
+
+.desc span {
+    display: inline-block;
+    line-height: 1.4;
+}
+
+.social {
+    margin-top: 30px;
+}
+
+.social i,
+.social svg {
+    margin-right: 20px;
+    width: 24px;
+    height: 24px;
+    color: #101b3b;
+}
+
+.credit {
+    border-top: 1px solid rgb(215, 215, 215);
+    font-size: 10px;
+    height: 50px;
+}
+
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+.progress-wrapper {
+    background-color: #eef1f6;
+    width: 90%;
+    border-radius: 20px;
+    margin: auto;
+}
+
+.progress {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    text-align: left;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.progress .circle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress .circle .label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #d5d5da;
+    color: #b5b5ba;
+    font-size: 17px;
+    flex-shrink: 0;
+}
+
+.progress .circle .title {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #b5b5ba;
+    max-width: 100px;
+}
+
+.progress .bar {
+    width: 80px;
+    height: 3px;
+    background: #d5d5da;
+    margin: 0 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+/* Status: Done */
+.progress .bar.done {
+    background: #26428b;
+}
+
+.progress .circle.done .label {
+    color: #fff;
+    background: #26428b;
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.progress .circle.done .title {
+    color: #444;
+}
+
+/* Status: Active */
+.progress .circle.active .label {
+    color: #fff;
+    background: #e3af64;
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.progress .circle.active .title {
+    color: #e3af64;
+}
+
+main h1 {
+    text-align: center;
+}
+.form-section {
+    display: flex;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 40px auto;
+    gap: 40px;
+}
+
+/* Subtitle on the left */
+.form-section-title {
+    flex: 0 0 180px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    line-height: 1.4;
+    text-align: right;
+}
+
+/* Form wrapper */
+.form-wrapper {
+    flex: 1;
+    background: #f4f7fa;
+    padding: 40px;
+    border-radius: 15px;
+}
+
+.form-content {
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form p {
+    font-weight: 600;
+    color: #26428b;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 200px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+label {
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #35353a;
+}
+
+input[type="tel"],
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="month"],
+input[type="number"] {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+}
+
+.radio-group {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-top: 8px;
+}
+select {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+}
+.radio-group {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-top: 0;
+}
+
+.radio-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #333;
+    cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 8px;
+}
+
+.radio-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.radio-row .form-group {
+    flex: 1 1 250px;
+    min-width: 250px;
+}
+
+.radio-group {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-top: 8px;
+}
+
+.radio-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #333;
+    cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 8px;
+}
+
+.next {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: 150px; /* right spacing */
+    padding: 12px 5px; /* ✅ top/bottom and left/right padding */
+    background-color: #101b3b;
+    border-radius: 14px;
+    color: #eef1f6;
+    margin-bottom: 150px;
+}
+
+.next button {
+    background-color: transparent; /* jika tidak mau ada warna tombol, atau sesuaikan */
+    border: none; /* hilangkan border default */
+    color: white; /* ubah warna teks menjadi putih */
+    font-weight: 600;
+    font-size: 18px;
+    padding: 3px 15px;
+    cursor: pointer;
+}
+
+[data-show-id] {
+    display: none;
+}
+
+.form-group input[type="text"] {
+    max-width: 100%;
+}
+
+.form-row[data-show-id] {
+    margin-top: 10px;
+}
+
+.radio-pairs-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 16px 20px;
+    border-radius: 10px;
+    margin-top: 8px;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: #333;
+}
+
+.radio-item span {
+    min-width: 200px;
+    font-weight: 500;
+}
+
+.radio-item label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.radio-pairs-group.aligned-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.radio-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+
+.radio-label {
+    flex: 0 0 350px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    white-space: nowrap;
+}
+
+.radio-options {
+    flex: 1;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.radio-options label {
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.radio-options.full-width {
+    flex: 1;
+}
+
+input.wide-text {
+    width: 100%;
+    max-width: 600px; /* boleh diubah sesuai keinginan */
+    padding: 10px 14px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* ======== FORM: PELAYANAN SOSIAL & PENUNJANG ======== */
+
+.pelayanan-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 900px;
+    margin-inline: auto;
+}
+
+.pelayanan-wrapper h4 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.pelayanan-item {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.pelayanan-label {
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.pelayanan-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 0.5rem;
+    align-items: flex-start;
+    font-weight: 300;
+}
+
+.form-group-horizontal {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 240px;
+    flex: 1;
+}
+
+.form-group-horizontal label {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.form-group-horizontal input {
+    padding: 0.5rem;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.full-width {
+    flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .pelayanan-row {
+        flex-direction: column;
+    }
+
+    .form-group-horizontal input {
+        max-width: 100%;
+    }
+}
+.pelayanan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Setiap blok pelayanan */
+.pelayanan-item {
+    border: 1px solid #ddd;
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Label atas kiri */
+.pelayanan-label {
+    margin-bottom: 0.75rem;
+    padding-top: 0.2rem;
+}
+
+/* Radio group vertikal */
+.radio-set {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.radio-set label {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Jumlah binaan */
+.jumlah-binaan-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.jumlah-binaan-group input[type="number"] {
+    width: 80px;
+    padding: 0.4rem;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-row-horizontal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.form-row-horizontal label {
+    flex: 0 0 200px;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.input-group input[type="number"] {
+    padding: 0.5rem;
+    width: 100px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group-horizontal-wrapper {
+    background-color: #fff;
+}
+.form-row-horizontal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background-color: #ffffff; /* ✅ Tambahan background putih */
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+.input-group input[type="text"] {
+    padding: 0.5rem;
+    min-width: 180px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.radio-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.radio-group label {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.input-group.sumber-dana {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+}
+
+.input-group.sumber-dana input[type="text"] {
+    padding: 0.5rem;
+    font-size: 0.95rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    min-width: 250px;
+}
+
+.jejaring-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.jejaring-block label {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.radio-group.jejaring-toggle {
+    display: flex;
+    flex-direction: column; /* ⬅️ ubah ke kolom (atas-bawah) */
+    gap: 0.5rem;
+}
+
+.jejaring-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.jejaring-fields input {
+    width: 100%;
+    margin-bottom: 10px; /* opsional, biar jarak antar input rapi */
+}
+.jejaring-block {
+    width: 100%;
+}
+
+.radio-group.jejaring-toggle {
+    width: 100%;
+}
+.jejaring-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.radio-group.jejaring-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.jejaring-fields {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Arial", sans-serif;
+    background-color: #f5f7fa;
+}
+.finish {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* ubah dari center ke flex-start */
+    padding-top: 40px; /* dorong sedikit dari atas */
+    padding-bottom: 40px; /* biar tidak terlalu mepet bawah */
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.finish > a img {
+    max-width: 150px;
+    margin-bottom: 2rem;
+}
+
+.wrapper-finish {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.finish-content img {
+    width: 80px;
+    margin-bottom: 1rem;
+}
+
+.finish-content h1 {
+    font-size: 2rem;
+    color: #101b3b;
+    margin-bottom: 0.5rem;
+}
+
+.finish-content p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.home-button a {
+    text-decoration: none;
+    background-color: #101b3b;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.home-button a:hover {
+    background-color: #0d1630;
+}
