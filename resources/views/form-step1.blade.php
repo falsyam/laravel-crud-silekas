@@ -12,7 +12,7 @@
             href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
             rel="stylesheet"
             />
-        <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+        <link rel="stylesheet" href="{{ secure_asset('css/styles.css') }}" />
         <title>Pendaftaran Lembaga Kesejahteraan Sosial</title>
     </head>
     <body>
