@@ -336,7 +336,7 @@ public function postStep2(Request $request)
 
     public function postStep3(Request $request)
     {
-        dd($request->all()); 
+
         // Ambil ID pengajuan dari cookie
         $pengajuanId = $request->cookie("pengajuan_id");
         $pengajuan = PengajuanLks::with(['identitasLks.sumberdaya', 'identitasLks.pelayanan','identitasLks.pelayananlain', 'identitasLks.usahapenunjang'])->find($pengajuanId);
@@ -355,7 +355,7 @@ public function postStep2(Request $request)
                 );
         }
 
-
+try {
         $request->validate([
     // ✅ Sumber Daya LKS (semua required karena pakai radio button / isian wajib)
         'prasarana_bangunan_kantor' => 'required|string',
@@ -392,7 +392,12 @@ public function postStep2(Request $request)
         'usaha_penunjang' => 'nullable|array',
         'usaha_penunjang.*.jenis_usaha' => 'required_with:usaha_penunjang|string',
     ]);
-
+} catch (\Illuminate\Validation\ValidationException $e) {
+    dd([
+        'input' => $request->all(), // data yang dikirim dari form
+        'errors' => $e->errors()    // pesan error validasi
+    ]);
+}
 
     PelayananLks::where('identitas_lks_id', $lksId)->delete();
     PelayananLainLks::where('identitas_lks_id', $lksId)->delete();
