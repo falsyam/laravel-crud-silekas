@@ -53,7 +53,7 @@
           </div>
           <div class="box-footer">
             <a href="{{ route('form.step1', ['tipe' => 'Pendaftaran LKS']) }}" class="cta">Ajukan Sekarang</a>
-            <a href="#" id="log-in"><i data-feather="log-in"></i></a>
+            <a href="{{ route('form.step1', ['tipe' => 'Pendaftaran LKS']) }}" id="log-in"><i data-feather="log-in"></i></a>
           </div>
         </div>
 
@@ -64,7 +64,7 @@
           </div>
           <div class="box-footer">
             <a href="{{ route('form.step1', ['tipe' => 'Perpanjangan Surat Tanda Daftar']) }}" class="cta">Ajukan Sekarang</a>
-            <a href="#" id="log-in"><i data-feather="log-in"></i></a>
+            <a href="{{ route('form.step1', ['tipe' => 'Perpanjangan Surat Tanda Daftar']) }}" id="log-in"><i data-feather="log-in"></i></a>
           </div>
         </div>
 
@@ -75,7 +75,7 @@
           </div>
           <div class="box-footer">
             <a href="{{ route('cekstatus-user')}}" class="cta">Cek Status</a>
-            <a href="#" id="search"><i data-feather="log-in"></i></a>
+            <a href="{{ route('cekstatus-user')}}" id="search"><i data-feather="log-in"></i></a>
           </div>
         </div>
 
