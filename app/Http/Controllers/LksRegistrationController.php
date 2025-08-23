@@ -336,7 +336,8 @@ public function postStep2(Request $request)
 
     public function postStep3(Request $request)
     {
-
+        
+        dd($request->all());
         // Ambil ID pengajuan dari cookie
         $pengajuanId = $request->cookie("pengajuan_id");
         $pengajuan = PengajuanLks::with(['identitasLks.sumberdaya', 'identitasLks.pelayanan','identitasLks.pelayananlain', 'identitasLks.usahapenunjang'])->find($pengajuanId);
