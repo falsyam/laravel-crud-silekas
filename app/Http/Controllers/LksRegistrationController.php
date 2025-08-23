@@ -337,133 +337,131 @@ public function postStep2(Request $request)
     public function postStep3(Request $request)
     {
         
-        // Ambil ID pengajuan dari cookie
-        $pengajuanId = $request->cookie("pengajuan_id");
-        $pengajuan = PengajuanLks::with(['identitasLks.sumberdaya', 'identitasLks.pelayanan','identitasLks.pelayananlain', 'identitasLks.usahapenunjang'])->find($pengajuanId);
+          $pengajuanId = $request->cookie("pengajuan_id");
+    $pengajuan = PengajuanLks::with(['identitasLks.sumberdaya', 'identitasLks.pelayanan','identitasLks.pelayananlain', 'identitasLks.usahapenunjang'])
+        ->find($pengajuanId);
 
-        // Ambil ID LKS dari session
-        $lksId = session("lks_id");
-        
+    // Ambil ID LKS dari session
+    $lksId = session("lks_id");
 
-        // Validasi apakah session masih aktif dan data pengajuan ditemukan
-        if (!$lksId || !$pengajuan) {
-            return redirect()
-                ->route("form.step1")
-                ->with(
-                    "error",
-                    "Session atau data pengajuan tidak ditemukan. Silakan ulangi pendaftaran."
-                );
-        }
+    if (!$lksId || !$pengajuan) {
+        return redirect()
+            ->route("form.step1")
+            ->with("error", "Session atau data pengajuan tidak ditemukan. Silakan ulangi pendaftaran.");
+    }
 
     try {
-        $request->validate([
-    // ✅ Sumber Daya LKS (semua required karena pakai radio button / isian wajib)
-        'prasarana_bangunan_kantor' => 'required|string',
-        'status_bangunan_kantor' => 'required|string',
-        'status_bangunan_kantor_lain' => 'required_if:status_bangunan_kantor,Lainnya|string|nullable',
-        'papan_nama' => 'required|string',
-        'papan_data' => 'nullable|string',
-        'perlengkapan_kantor' => 'required|string',
-        'ruang_konseling' => 'required|string',
-        'ruang_diagnosa' => 'required|string',
-        'ruang_teknis_lainnya' => 'required|string',
-        'ruang_makan' => 'required|string',
-        'ruang_kesehatan' => 'required|string',
-        'ruang_umum_lainnya' => 'required|string',
-        'peralatan_komunikasi' => 'required|string',
-        'instalasi_listrik' => 'required|string',
-        'sarana_penunjang_lainnya' => 'required|string',
-        'mobil' => 'required|string',
-        'motor' => 'required|string',
-        'transportasi_lainnya' => 'nullable|string',
+        // ✅ Validasi
+        $validated = $request->validate([
+            'prasarana_bangunan_kantor' => 'required|string',
+            'status_bangunan_kantor' => 'required|string',
+            'status_bangunan_kantor_lain' => 'required_if:status_bangunan_kantor,Lainnya|string|nullable',
+            'papan_nama' => 'required|string',
+            'papan_data' => 'nullable|string',
+            'perlengkapan_kantor' => 'required|string',
+            'ruang_konseling' => 'required|string',
+            'ruang_diagnosa' => 'required|string',
+            'ruang_teknis_lainnya' => 'required|string',
+            'ruang_makan' => 'required|string',
+            'ruang_kesehatan' => 'required|string',
+            'ruang_umum_lainnya' => 'required|string',
+            'peralatan_komunikasi' => 'required|string',
+            'instalasi_listrik' => 'required|string',
+            'sarana_penunjang_lainnya' => 'required|string',
+            'mobil' => 'required|string',
+            'motor' => 'required|string',
+            'transportasi_lainnya' => 'nullable|string',
 
-        // ✅ Pelayanan LKS (array wajib isi, minimal satu item)
-        'pelayanan' => 'required|array|min:1',
-        'pelayanan.*.kategori' => 'required|string',
-        'pelayanan.*.bentuk' => 'required|string',
-        'pelayanan.*.jumlah' => 'required|numeric|min:0',
+            'pelayanan' => 'required|array|min:1',
+            'pelayanan.*.kategori' => 'required|string',
+            'pelayanan.*.bentuk' => 'required|string',
+            'pelayanan.*.jumlah' => 'required|numeric|min:0',
 
-        // ✅ Pelayanan Lain (opsional tapi valid jika diisi)
-        'pelayanan_lain' => 'nullable|array',
-        'pelayanan_lain.*.jenis' => 'required_with:pelayanan_lain|string',
-        'pelayanan_lain.*.jumlah' => 'required_with:pelayanan_lain|numeric|min:0',
+            'pelayanan_lain' => 'nullable|array',
+            'pelayanan_lain.*.jenis' => 'required_with:pelayanan_lain|string',
+            'pelayanan_lain.*.jumlah' => 'required_with:pelayanan_lain|numeric|min:0',
 
-        // ✅ Usaha Penunjang (opsional tapi valid jika diisi)
-        'usaha_penunjang' => 'nullable|array',
-        'usaha_penunjang.*.jenis_usaha' => 'required_with:usaha_penunjang|string',
-    ]);
-    } catch (\Illuminate\Validation\ValidationException $e) {
-        // 🐛 Debug: tampilkan error validasi
-        dd($e->errors());
-    }
-
-    // Kalau validasi lolos, tampilkan data yang dikirim (untuk debug)
-    dd($request->all());
-}
-
-    PelayananLks::where('identitas_lks_id', $lksId)->delete();
-    PelayananLainLks::where('identitas_lks_id', $lksId)->delete();
-    UsahaPenunjangLks::where('identitas_lks_id', $lksId)->delete();
-
-
-        // Simpan Sumber Daya LKS
-        $sumberdaya = SumberDayaLks::updateOrCreate( [
-            "identitas_lks_id" => $lksId],
-            ["prasarana_bangunan_kantor" => $request->prasarana_bangunan_kantor,
-            "status_bangunan_kantor" => $request->status_bangunan_kantor,
-            "status_bangunan_kantor_lain" =>$request->status_bangunan_kantor_lain,
-            "papan_nama" => $request->papan_nama,
-            "papan_data" => $request->papan_data,
-            "perlengkapan_kantor" => $request->perlengkapan_kantor,
-            "ruang_konseling" => $request->ruang_konseling,
-            "ruang_diagnosa" => $request->ruang_diagnosa,
-            "ruang_teknis_lainnya" => $request->ruang_teknis_lainnya,
-            "ruang_makan" => $request->ruang_makan,
-            "ruang_kesehatan" => $request->ruang_kesehatan,
-            "ruang_umum_lainnya" => $request->ruang_umum_lainnya,
-            "peralatan_komunikasi" => $request->peralatan_komunikasi,
-            "instalasi_listrik" => $request->instalasi_listrik,
-            "sarana_penunjang_lainnya" => $request->sarana_penunjang_lainnya,
-            "mobil" => $request->mobil,
-            "motor" => $request->motor,
-            "transportasi_lainnya" => $request->transportasi_lainnya,
+            'usaha_penunjang' => 'nullable|array',
+            'usaha_penunjang.*.jenis_usaha' => 'required_with:usaha_penunjang|string',
         ]);
 
-        // Simpan Pelayanan LKS (bisa multiple)
-        if ($request->has("pelayanan")) {
-            foreach ($request->pelayanan as $item) {
-                PelayananLks::create([
-                    "identitas_lks_id" => $lksId,
-                    "kategori_pelayanan" => $item["kategori"] ?? "",
-                    "bentuk_pelayanan" => $item["bentuk"] ?? "",
-                    "jumlah_binaan" => $item["jumlah"] ?? 0,
-                ]);
-            }
+        // 🔄 Simpan data dalam transaction
+        DB::beginTransaction();
+
+        // Hapus data lama
+        PelayananLks::where('identitas_lks_id', $lksId)->delete();
+        PelayananLainLks::where('identitas_lks_id', $lksId)->delete();
+        UsahaPenunjangLks::where('identitas_lks_id', $lksId)->delete();
+
+        // Simpan Sumber Daya
+        SumberDayaLks::updateOrCreate(
+            ["identitas_lks_id" => $lksId],
+            collect($validated)->only([
+                'prasarana_bangunan_kantor',
+                'status_bangunan_kantor',
+                'status_bangunan_kantor_lain',
+                'papan_nama',
+                'papan_data',
+                'perlengkapan_kantor',
+                'ruang_konseling',
+                'ruang_diagnosa',
+                'ruang_teknis_lainnya',
+                'ruang_makan',
+                'ruang_kesehatan',
+                'ruang_umum_lainnya',
+                'peralatan_komunikasi',
+                'instalasi_listrik',
+                'sarana_penunjang_lainnya',
+                'mobil',
+                'motor',
+                'transportasi_lainnya'
+            ])->toArray()
+        );
+
+        // Simpan Pelayanan
+        foreach ($validated['pelayanan'] as $item) {
+            PelayananLks::create([
+                "identitas_lks_id" => $lksId,
+                "kategori_pelayanan" => $item["kategori"],
+                "bentuk_pelayanan" => $item["bentuk"],
+                "jumlah_binaan" => $item["jumlah"],
+            ]);
         }
 
-        // Simpan Pelayanan Lainnya (optional)
-        if ($request->has("pelayanan_lain")) {
-            foreach ($request->pelayanan_lain as $item) {
+        // Simpan Pelayanan Lain
+        if (!empty($validated['pelayanan_lain'])) {
+            foreach ($validated['pelayanan_lain'] as $item) {
                 PelayananLainLks::create([
                     "identitas_lks_id" => $lksId,
-                    "jenis_pelayanan" => $item["jenis"] ?? "",
-                    "jumlah_binaan" => $item["jumlah"] ?? 0,
+                    "jenis_pelayanan" => $item["jenis"],
+                    "jumlah_binaan" => $item["jumlah"],
                 ]);
             }
         }
 
-        // Simpan Usaha Penunjang (optional)
-        if ($request->has("usaha_penunjang")) {
-            foreach ($request->usaha_penunjang as $item) {
+        // Simpan Usaha Penunjang
+        if (!empty($validated['usaha_penunjang'])) {
+            foreach ($validated['usaha_penunjang'] as $item) {
                 UsahaPenunjangLks::create([
                     "identitas_lks_id" => $lksId,
-                    "jenis_usaha" => $item["jenis_usaha"] ?? "",
+                    "jenis_usaha" => $item["jenis_usaha"],
                 ]);
             }
         }
 
-        return redirect()->route("form.step4");
+        DB::commit();
+
+        return redirect()->route("form.step4")->with("success", "Data berhasil disimpan!");
+
+    } catch (ValidationException $e) {
+        // 🐛 Debug khusus error validasi
+        dd("VALIDATION ERROR", $e->errors());
+    } catch (\Exception $e) {
+        DB::rollBack();
+        // 🐛 Debug error umum
+        dd("GENERAL ERROR", $e->getMessage(), $e->getTraceAsString());
     }
+}
 
 public function postStep4(Request $request)
 {
