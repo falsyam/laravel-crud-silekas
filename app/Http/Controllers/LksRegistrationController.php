@@ -334,10 +334,6 @@ public function postStep2(Request $request)
 
     return redirect()->route("form.step3", compact('legalitas'))->with("success");
 }
-
-
-    public function postStep3(Request $request)
-    {
         
      public function postStep3(Request $request)
 {
