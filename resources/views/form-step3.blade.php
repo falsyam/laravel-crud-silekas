@@ -99,8 +99,10 @@
                             <div class="form-group">
                                 <label for="prasarana_bangunan">Prasarana bangunan kantor milik LKS</label>
                                 <div class="radio-group">
-                                    <label><input type="radio" name="prasarana_bangunan_kantor" value="Punya{{ old('prasarana_bangunan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->prasarana_bangunan_kantor) === 'Ada' ? 'checked' : '' }}">Punya</label>
-                                    <label><input type="radio" name="prasarana_bangunan_kantor" value="Tidak_punya{{ old('prasarana_bangunan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->prasarana_bangunan_kantor) === 'Tidak_Punya' ? 'checked' : '' }}"">Tidak Punya</label>
+                                    <label><input type="radio" name="prasarana_bangunan_kantor" value="Punya"
+                                    {{ old('prasarana_bangunan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->prasarana_bangunan_kantor) === 'Punya' ? 'checked' : '' }}>Punya</label>
+                                    <label><input type="radio" name="prasarana_bangunan_kantor" value="Tidak_punya"
+                                    {{ old('prasarana_bangunan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->prasarana_bangunan_kantor) === 'Tidak_punya' ? 'checked' : '' }}>Tidak Punya</label>
                                 </div>
                             </div>
                         </div>
@@ -109,19 +111,23 @@
                                 <label for="status_bangunan_kantor">Status bangunan kantor milik LKS</label>
                                 <div class="radio-group">
                                     <div class="radio-option">
-                                        <input type="radio" name="status_bangunan_kantor" value="Milik Sendiri{{ old('status_bangunan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->prasarana_bangunan_kantor) === 'Milik Sendiri' ? 'checked' : '' }} ">
+                                        <input type="radio" name="status_bangunan_kantor" value="Milik Sendiri"
+                                        {{ old('status_bangunan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->prasarana_bangunan_kantor) === 'Milik Sendiri' ? 'checked' : '' }}>
                                         <span>Milik Sendiri</span>
                                     </div>
                                     <div class="radio-option">
-                                        <input type="radio" name="status_bangunan_kantor" value="Sewa{{ old('status_bangunan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->prasarana_bangunan_kantor) === 'Sewa' ? 'checked' : '' }} "">
+                                        <input type="radio" name="status_bangunan_kantor" value="Sewa"
+                                        {{ old('status_bangunan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->prasarana_bangunan_kantor) === 'Sewa' ? 'checked' : '' }}>
                                         <span>Sewa</span>
                                     </div>
                                     <div class="radio-option">
-                                        <input type="radio" name="status_bangunan_kantor" value="Pinjam{{ old('status_bangunan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->prasarana_bangunan_kantor) === 'Pinjam' ? 'checked' : '' }} "">
+                                        <input type="radio" name="status_bangunan_kantor" value="Pinjam"
+                                        {{ old('status_bangunan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->prasarana_bangunan_kantor) === 'Pinjam' ? 'checked' : '' }}>
                                         <span>Pinjam</span>
                                     </div>
                                     <div class="radio-option lain-lain-option">
-                                        <input type="radio" name="status_bangunan_kantor" value="Lain-Lain{{ old('status_bangunan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->prasarana_bangunan_kantor) === 'Lain-Lain' ? 'checked' : '' }} "">
+                                        <input type="radio" name="status_bangunan_kantor" value="Lain-Lain"
+                                        {{ old('status_bangunan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->prasarana_bangunan_kantor) === 'Lain-Lain' ? 'checked' : '' }}>
                                         <span>Lain-Lain</span>
                                         <input type="text" name="status_bangunan_kantor_lain" placeholder="Tulis keterangan lain..." value="{{ old('status_bangunan_kantor_lain', optional(optional($pengajuan->identitasLks)->sumberdaya)->status_bangunan_kantor_lain) }}"/>
                                     </div>
@@ -136,16 +142,20 @@
                                     <div class="radio-item">
                                         <div class="radio-label">Papan Nama</div>
                                         <div class="radio-options">
-                                            <label><input type="radio" name="papan_nama" value="Tidak ada{{ old('papan_nama', optional(optional($pengajuan->identitasLks)->sumberdaya)->papan_nama) === 'Tidak ada' ? 'checked' : '' }}"> Tidak Ada</label>
-                                            <label><input type="radio" name="papan_nama" value="Ada{{ old('papan_nama', optional(optional($pengajuan->identitasLks)->sumberdaya)->papan_nama) === 'Ada' ? 'checked' : '' }}"> Ada</label>
+                                            <label><input type="radio" name="papan_nama" value="Tidak ada"
+                                            {{ old('papan_nama', optional(optional($pengajuan->identitasLks)->sumberdaya)->papan_nama) === 'Tidak ada' ? 'checked' : '' }}> Tidak Ada</label>
+                                            <label><input type="radio" name="papan_nama" value="Ada"
+                                            {{ old('papan_nama', optional(optional($pengajuan->identitasLks)->sumberdaya)->papan_nama) === 'Ada' ? 'checked' : '' }}> Ada</label>
                                         </div>
                                     </div>
                                     <!-- b -->
                                     <div class="radio-item">
                                         <div class="radio-label">Papan Data</div>
                                         <div class="radio-options">
-                                            <label><input type="radio" name="papan_data" value="Tidak ada{{ old('papan_data', optional(optional($pengajuan->identitasLks)->sumberdaya)->papan_data) === 'Tidak ada' ? 'checked' : '' }}">Tidak Ada</label>
-                                            <label><input type="radio" name="papan_data" value="Ada{{ old('papan_data', optional(optional($pengajuan->identitasLks)->sumberdaya)->papan_data) === 'Ada' ? 'checked' : '' }}">Ada</label>
+                                            <label><input type="radio" name="papan_data" value="Tidak ada"
+                                            {{ old('papan_data', optional(optional($pengajuan->identitasLks)->sumberdaya)->papan_data) === 'Tidak ada' ? 'checked' : '' }}>Tidak Ada</label>
+                                            <label><input type="radio" name="papan_data" value="Ada"
+                                            {{ old('papan_data', optional(optional($pengajuan->identitasLks)->sumberdaya)->papan_data) === 'Ada' ? 'checked' : '' }}>Ada</label>
                                         </div>
                                     </div>
                                 </div>
@@ -155,15 +165,18 @@
                                     <label for="perlengkapan_kantor">Perlengkapan Kantor</label>
                                     <div class="radio-group">
                                         <label>
-                                        <input type="radio" name="perlengkapan_kantor" value="Lengkap{{ old('perlengkapan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->perlengkapan_kantor) === 'Lengkap' ? 'checked' : '' }}">
+                                        <input type="radio" name="perlengkapan_kantor" value="Lengkap"
+                                        {{ old('perlengkapan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->perlengkapan_kantor) === 'Lengkap' ? 'checked' : '' }}>
                                         Lengkap
                                         </label>
                                         <label>
-                                        <input type="radio" name="perlengkapan_kantor" value="Kurang{{ old('perlengkapan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->perlengkapan_kantor) === 'Kurang' ? 'checked' : '' }}">
+                                        <input type="radio" name="perlengkapan_kantor" value="Kurang"
+                                        {{ old('perlengkapan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->perlengkapan_kantor) === 'Kurang' ? 'checked' : '' }}>
                                         Kurang
                                         </label>
                                         <label>
-                                        <input type="radio" name="perlengkapan_kantor" value="Tidak Ada{{ old('perlengkapan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->perlengkapan_kantor) === 'Tidak Ada' ? 'checked' : '' }}">
+                                        <input type="radio" name="perlengkapan_kantor" value="Tidak Ada"
+                                        {{ old('perlengkapan_kantor', optional(optional($pengajuan->identitasLks)->sumberdaya)->perlengkapan_kantor) === 'Tidak Ada' ? 'checked' : '' }}>
                                         Tidak Ada
                                         </label>
                                     </div>
@@ -178,16 +191,29 @@
                                     <div class="radio-item">
                                         <div class="radio-label">Ruang Konseling</div>
                                         <div class="radio-options">
-                                            <label><input type="radio" name="ruang_konseling" value="Tidak ada{{ old('ruang_konseling', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_konseling) === 'Tidak ada' ? 'checked' : '' }}"> Tidak Ada</label>
-                                            <label><input type="radio" name="ruang_konseling" value="Ada{{ old('ruang_konseling', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_konseling) === 'Ada' ? 'checked' : '' }}"> Ada</label>
+                                            <label><input type="radio" name="ruang_konseling" value="Tidak ada" 
+                                            {{ old('ruang_konseling', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_konseling) === 'Tidak ada' ? 'checked' : '' }}>
+                                            Tidak Ada
+                                            </label>
+                                            <label>
+                                            <input type="radio" name="ruang_konseling" value="Ada" 
+                                            {{ old('ruang_konseling', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_konseling) === 'Ada' ? 'checked' : '' }}> 
+                                            Ada
+                                        </label>
                                         </div>
                                     </div>
-                                    <!-- b -->
                                     <div class="radio-item">
                                         <div class="radio-label">Ruang Diagnosa</div>
                                         <div class="radio-options">
-                                            <label><input type="radio" name="ruang_diagnosa" value="Tidak ada{{ old('ruang_diagnosa', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_diagnosa) === 'Tidak ada' ? 'checked' : '' }}"> Tidak Ada</label>
-                                            <label><input type="radio" name="ruang_diagnosa" value="Ada{{ old('ruang_diagnosa', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_diagnosa) === 'Ada' ? 'checked' : '' }}">Ada</label>
+                                            <label><input type="radio" name="ruang_diagnosa" value="Tidak ada" 
+                                            {{ old('ruang_diagnosa', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_diagnosa) === 'Tidak ada' ? 'checked' : '' }}>
+                                            Tidak Ada
+                                            </label>
+                                            <label>
+                                            <input type="radio" name="ruang_diagnosa" value="Ada" 
+                                            {{ old('ruang_diagnosa', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_diagnosa) === 'Ada' ? 'checked' : '' }}> 
+                                            Ada
+                                        </label>
                                         </div>
                                     </div>
                                     <div class="form-group" style="margin-top: 10px;">
@@ -204,16 +230,24 @@
                                     <div class="radio-item">
                                         <div class="radio-label">Ruang Makan</div>
                                         <div class="radio-options">
-                                            <label><input type="radio" name="ruang_makan" value="Tidak ada{{ old('ruang_makan', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_makan) === 'Tidak ada' ? 'checked' : '' }}"> Tidak Ada</label>
-                                            <label><input type="radio" name="ruang_makan" value="Ada{{ old('ruang_makan', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_makan) === 'Ada' ? 'checked' : '' }}"> Ada</label>
+                                            <label><input type="radio" name="ruang_makan" value="Tidak ada" 
+                                            {{ old('ruang_makan', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_makan) === 'Tidak ada' ? 'checked' : '' }}>
+                                            Tidak Ada
+                                            </label>
+                                            <label><input type="radio" name="ruang_makan" value="Ada" 
+                                            {{ old('ruang_makan', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_makan) === 'Ada' ? 'checked' : '' }}> 
+                                            Ada
+                                        </label>
                                         </div>
                                     </div>
                                     <!-- b -->
                                     <div class="radio-item">
-                                        <div class="radio-label">Ruang Diagnosa</div>
+                                        <div class="radio-label">Ruang Kesehatan</div>
                                         <div class="radio-options">
-                                            <label><input type="radio" name="ruang_kesehatan" value="Tidak ada{{ old('ruang_kesehatan', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_kesehatan) === 'Tidak ada' ? 'checked' : '' }}"> Tidak Ada</label>
-                                            <label><input type="radio" name="ruang_kesehatan" value="Ada{{ old('ruang_kesehatan', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_kesehatan) === 'Ada' ? 'checked' : '' }}">Ada</label>
+                                            <label><input type="radio" name="ruang_kesehatan" value="Tidak ada"
+                                            {{ old('ruang_kesehatan', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_kesehatan) === 'Tidak ada' ? 'checked' : '' }}> Tidak Ada</label>
+                                            <label><input type="radio" name="ruang_kesehatan" value="Ada"
+                                            {{ old('ruang_kesehatan', optional(optional($pengajuan->identitasLks)->sumberdaya)->ruang_kesehatan) === 'Ada' ? 'checked' : '' }}>Ada</label>
                                         </div>
                                     </div>
                                     <div class="form-group" style="margin-top: 10px;">
@@ -230,16 +264,24 @@
                                     <div class="radio-item">
                                         <div class="radio-label">Peralatan Komunikasi</div>
                                         <div class="radio-options">
-                                            <label><input type="radio" name="peralatan_komunikasi" value="Tidak ada{{ old('peralatan_komunikasi', optional(optional($pengajuan->identitasLks)->sumberdaya)->peralatan_komunikasi) === 'Tidak ada' ? 'checked' : '' }}"> Tidak Ada</label>
-                                            <label><input type="radio" name="peralatan_komunikasi" value="Ada{{ old('peralatan_komunikasi', optional(optional($pengajuan->identitasLks)->sumberdaya)->peralatan_komunikasi) === 'Ada' ? 'checked' : '' }}"> Ada</label>
+                                            <label><input type="radio" name="peralatan_komunikasi" value="Tidak ada" 
+                                            {{ old('peralatan_komunikasi', optional(optional($pengajuan->identitasLks)->sumberdaya)->peralatan_komunikasi) === 'Tidak ada' ? 'checked' : '' }}> 
+                                            Tidak ada
+                                        </label>
+                                            <label><input type="radio" name="peralatan_komunikasi" value="Ada" 
+                                            {{ old('peralatan_komunikasi', optional(optional($pengajuan->identitasLks)->sumberdaya)->peralatan_komunikasi) === 'Ada' ? 'checked' : '' }}> 
+                                            Ada
+                                        </label>
                                         </div>
                                     </div>
                                     <!-- b -->
                                     <div class="radio-item">
                                         <div class="radio-label">Instalasi listrik</div>
                                         <div class="radio-options">
-                                            <label><input type="radio" name="instalasi_listrik" value="Tidak ada{{ old('instalasi_listrik', optional(optional($pengajuan->identitasLks)->sumberdaya)->instalasi_listrik) === 'Tidak ada' ? 'checked' : '' }}"> Tidak Ada</label>
-                                            <label><input type="radio" name="instalasi_listrik" value="Ada{{ old('instalasi_listrik', optional(optional($pengajuan->identitasLks)->sumberdaya)->instalasi_listrik) === 'Ada' ? 'checked' : '' }}">Ada</label>
+                                            <label><input type="radio" name="instalasi_listrik" value="Tidak ada"
+                                            {{ old('instalasi_listrik', optional(optional($pengajuan->identitasLks)->sumberdaya)->instalasi_listrik) === 'Tidak ada' ? 'checked' : '' }}> Tidak Ada</label>
+                                            <label><input type="radio" name="instalasi_listrik" value="Ada"
+                                            {{ old('instalasi_listrik', optional(optional($pengajuan->identitasLks)->sumberdaya)->instalasi_listrik) === 'Ada' ? 'checked' : '' }}>Ada</label>
                                         </div>
                                     </div>
                                     <div class="form-group" style="margin-top: 10px;">
@@ -256,16 +298,20 @@
                                     <div class="radio-item">
                                         <div class="radio-label">Mobil</div>
                                         <div class="radio-options">
-                                            <label><input type="radio" name="mobil" value="Tidak ada{{ old('mobil', optional(optional($pengajuan->identitasLks)->sumberdaya)->mobil) === 'Tidak ada' ? 'checked' : '' }}"> Tidak Ada</label>
-                                            <label><input type="radio" name="mobil" value="Ada{{ old('mobil', optional(optional($pengajuan->identitasLks)->sumberdaya)->mobil) === 'Ada' ? 'checked' : '' }}"> Ada</label>
+                                            <label><input type="radio" name="mobil" value="Tidak ada"
+                                            {{ old('mobil', optional(optional($pengajuan->identitasLks)->sumberdaya)->mobil) === 'Tidak ada' ? 'checked' : '' }}> Tidak Ada</label>
+                                            <label><input type="radio" name="mobil" value="Ada"
+                                            {{ old('mobil', optional(optional($pengajuan->identitasLks)->sumberdaya)->mobil) === 'Ada' ? 'checked' : '' }}> Ada</label>
                                         </div>
                                     </div>
                                     <!-- b -->
                                     <div class="radio-item">
                                         <div class="radio-label">Motor</div>
                                         <div class="radio-options">
-                                            <label><input type="radio" name="motor" value="Tidak ada{{ old('motor', optional(optional($pengajuan->identitasLks)->sumberdaya)->motor) === 'Tidak ada' ? 'checked' : '' }}"> Tidak Ada</label>
-                                            <label><input type="radio" name="motor" value="Ada{{ old('motor', optional(optional($pengajuan->identitasLks)->sumberdaya)->motor) === 'Ada' ? 'checked' : '' }}">Ada</label>
+                                            <label><input type="radio" name="motor" value="Tidak ada"
+                                            {{ old('motor', optional(optional($pengajuan->identitasLks)->sumberdaya)->motor) === 'Tidak ada' ? 'checked' : '' }}> Tidak Ada</label>
+                                            <label><input type="radio" name="motor" value="Ada"
+                                            {{ old('motor', optional(optional($pengajuan->identitasLks)->sumberdaya)->motor) === 'Ada' ? 'checked' : '' }}>Ada</label>
                                         </div>
                                     </div>
                                     <div class="form-group" style="margin-top: 10px;">
