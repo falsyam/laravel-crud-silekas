@@ -339,9 +339,16 @@ public function postStep2(Request $request)
     public function postStep3(Request $request)
     {
         
-          $pengajuanId = $request->cookie("pengajuan_id");
-    $pengajuan = PengajuanLks::with(['identitasLks.sumberdaya', 'identitasLks.pelayanan','identitasLks.pelayananlain', 'identitasLks.usahapenunjang'])
-        ->find($pengajuanId);
+     public function postStep3(Request $request)
+{
+    // Ambil ID pengajuan dari cookie
+    $pengajuanId = $request->cookie("pengajuan_id");
+    $pengajuan = PengajuanLks::with([
+        'identitasLks.sumberdaya', 
+        'identitasLks.pelayanan',
+        'identitasLks.pelayananlain', 
+        'identitasLks.usahapenunjang'
+    ])->find($pengajuanId);
 
     // Ambil ID LKS dari session
     $lksId = session("lks_id");
@@ -352,44 +359,41 @@ public function postStep2(Request $request)
             ->with("error", "Session atau data pengajuan tidak ditemukan. Silakan ulangi pendaftaran.");
     }
 
-    try {
-        // ✅ Validasi
-        $validated = $request->validate([
-            'prasarana_bangunan_kantor' => 'required|string',
-            'status_bangunan_kantor' => 'required|string',
-            'status_bangunan_kantor_lain' => 'required_if:status_bangunan_kantor,Lainnya|string|nullable',
-            'papan_nama' => 'required|string',
-            'papan_data' => 'nullable|string',
-            'perlengkapan_kantor' => 'required|string',
-            'ruang_konseling' => 'required|string',
-            'ruang_diagnosa' => 'required|string',
-            'ruang_teknis_lainnya' => 'required|string',
-            'ruang_makan' => 'required|string',
-            'ruang_kesehatan' => 'required|string',
-            'ruang_umum_lainnya' => 'required|string',
-            'peralatan_komunikasi' => 'required|string',
-            'instalasi_listrik' => 'required|string',
-            'sarana_penunjang_lainnya' => 'required|string',
-            'mobil' => 'required|string',
-            'motor' => 'required|string',
-            'transportasi_lainnya' => 'nullable|string',
+    // ✅ Validasi otomatis redirect back jika gagal
+    $validated = $request->validate([
+        'prasarana_bangunan_kantor' => 'required|string',
+        'status_bangunan_kantor' => 'required|string',
+        'status_bangunan_kantor_lain' => 'required_if:status_bangunan_kantor,Lainnya|string|nullable',
+        'papan_nama' => 'required|string',
+        'papan_data' => 'nullable|string',
+        'perlengkapan_kantor' => 'required|string',
+        'ruang_konseling' => 'required|string',
+        'ruang_diagnosa' => 'required|string',
+        'ruang_teknis_lainnya' => 'required|string',
+        'ruang_makan' => 'required|string',
+        'ruang_kesehatan' => 'required|string',
+        'ruang_umum_lainnya' => 'required|string',
+        'peralatan_komunikasi' => 'required|string',
+        'instalasi_listrik' => 'required|string',
+        'sarana_penunjang_lainnya' => 'required|string',
+        'mobil' => 'required|string',
+        'motor' => 'required|string',
+        'transportasi_lainnya' => 'nullable|string',
 
-            'pelayanan' => 'required|array|min:1',
-            'pelayanan.*.kategori' => 'required|string',
-            'pelayanan.*.bentuk' => 'required|string',
-            'pelayanan.*.jumlah' => 'required|numeric|min:0',
+        'pelayanan' => 'required|array|min:1',
+        'pelayanan.*.kategori' => 'required|string',
+        'pelayanan.*.bentuk' => 'required|string',
+        'pelayanan.*.jumlah' => 'required|numeric|min:0',
 
-            'pelayanan_lain' => 'nullable|array',
-            'pelayanan_lain.*.jenis' => 'required_with:pelayanan_lain|string',
-            'pelayanan_lain.*.jumlah' => 'required_with:pelayanan_lain|numeric|min:0',
+        'pelayanan_lain' => 'nullable|array',
+        'pelayanan_lain.*.jenis' => 'required_with:pelayanan_lain|string',
+        'pelayanan_lain.*.jumlah' => 'required_with:pelayanan_lain|numeric|min:0',
 
-            'usaha_penunjang' => 'nullable|array',
-            'usaha_penunjang.*.jenis_usaha' => 'required_with:usaha_penunjang|string',
-        ]);
+        'usaha_penunjang' => 'nullable|array',
+        'usaha_penunjang.*.jenis_usaha' => 'required_with:usaha_penunjang|string',
+    ]);
 
-        // 🔄 Simpan data dalam transaction
-        DB::beginTransaction();
-
+    DB::transaction(function () use ($validated, $lksId) {
         // Hapus data lama
         PelayananLks::where('identitas_lks_id', $lksId)->delete();
         PelayananLainLks::where('identitas_lks_id', $lksId)->delete();
@@ -450,19 +454,9 @@ public function postStep2(Request $request)
                 ]);
             }
         }
+    });
 
-        DB::commit();
-
-        return redirect()->route("form.step4")->with("success", "Data berhasil disimpan!");
-
-    } catch (ValidationException $e) {
-        // 🐛 Debug khusus error validasi
-        dd("VALIDATION ERROR", $e->errors());
-    } catch (\Exception $e) {
-        DB::rollBack();
-        // 🐛 Debug error umum
-        dd("GENERAL ERROR", $e->getMessage(), $e->getTraceAsString());
-    }
+    return redirect()->route("form.step4")->with("success", "Data berhasil disimpan!");
 }
 
 public function postStep4(Request $request)
